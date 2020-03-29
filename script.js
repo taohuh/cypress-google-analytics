@@ -1,10 +1,13 @@
 const homePage = document.getElementsByClassName("home-page");
 
 function clickBtn(type) {
-	gtag('event', 'click_button', {
-		'event_label': `${type} Button`,
-		'event_category': 'button',
-	});
+	gtag(
+		'event', 'click_button',
+		{
+			'event_label': `${type} Button`,
+			'event_category': 'button',
+		}
+	);
 }
 
 function clickBtnLike() {
