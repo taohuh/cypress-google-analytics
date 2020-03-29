@@ -11,7 +11,7 @@ function getLastEventCategory(event) {
 }
 
 function getEventClickButton(dataLayer) {
-	return dataLayer.filter((data) => data[1] === 'click_button');
+	return dataLayer.filter((data) => data[0] === 'event' && data[1] === 'click_button');
 }
 
 describe('Google Analytics', () => {
@@ -19,7 +19,7 @@ describe('Google Analytics', () => {
 		cy.visit('/');
 	});
 
-	it('Should track event Like button correctly', () => {
+	it('Should track event label `Like Button` correctly', () => {
 		cy.get('[data-cy="btn-like"]')
 			.click();
 
@@ -32,18 +32,20 @@ describe('Google Analytics', () => {
 			expect(label).eq('Like Button');
 			expect(category).eq('button');
 		});
+	});
 
+	it('Should track event label `Dislike Button` correctly', () => {
 		cy.get('[data-cy="btn-dislike"]')
 			.click();
 
-			cy.window().then((win) => {
-				const dataLayer = win.dataLayer;
-				const eventClickButton = getEventClickButton(dataLayer);
-				const label = getLastEventLabel(eventClickButton);
-				const category = getLastEventCategory(eventClickButton);
+		cy.window().then((win) => {
+			const dataLayer = win.dataLayer;
+			const eventClickButton = getEventClickButton(dataLayer);
+			const label = getLastEventLabel(eventClickButton);
+			const category = getLastEventCategory(eventClickButton);
 
-				expect(label).eq('Dislike Button');
-				expect(category).eq('button');
-			});
+			expect(label).eq('Dislike Button');
+			expect(category).eq('button');
+		});
 	});
-})
+});
