@@ -1,0 +1,37 @@
+html, body {
+	font-family: 'Kanit', sans-serif;
+	margin: 0;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-group {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn {
+	margin: 16px;
+
+	width: 200px;
+	height: 50px;
+
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: bold;
+
+	border-radius: 8px;
+
+	cursor: pointer;
+}
+
+.btn:hover {
+	background-color: salmon;
+	color: white;
+}
